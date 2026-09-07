@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="es">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Contacto - Sol de Alegría</title>
+		<link rel="stylesheet" href="css/estilo.css">
+	</head>
+
+	<body>
+		<header>
+			<h1>Sol de Alegría</h1>
+			<p>Celebraciones infantiles llenas de alegría</p>
+		</header>
+
+		<nav>
+			<a href="index.html">Inicio</a>
+			<a href="productos.html">Productos</a>
+			<a href="nosotros.html">Nosotros</a>
+			<a href="blogs.html">Blogs</a>
+			<a href="contacto.html">Contacto</a>
+			<a href="login.html">Iniciar sesión</a>
+			<a href="registro.html">Registrarse</a>
+			<a href="carrito.html">Carrito</a>
+		</nav>
+
+		<main>
+			<section>
+				<h2>Contáctanos</h2>
+
+				<p>
+					¿Tienes alguna duda o quieres consultar sobre nuestros servicios?
+					Completa el siguiente formulario y nos pondremos en contacto contigo.
+				</p>
+
+				<form id="formularioContacto">
+					<div>
+						<label for="nombreContacto">Nombre:</label>
+						<input
+							type="text"
+							id="nombreContacto"
+							name="nombreContacto"
+							maxlength="100"
+							required
+						>
+					</div>
+
+					<div>
+						<label for="emailContacto">Correo electrónico:</label>
+						<input
+							type="email"
+							id="emailContacto"
+							name="emailContacto"
+							maxlength="100"
+							required
+						>
+					</div>
+
+					<div>
+						<label for="comentarioContacto">Mensaje:</label>
+						<textarea
+							id="comentarioContacto"
+							name="comentarioContacto"
+							maxlength="500"
+							required
+						></textarea>
+					</div>
+
+					<p id="mensajeContacto"></p>
+
+					<button type="submit">Enviar mensaje</button>
+				</form>
+			</section>
+		</main>
+
+		<footer>
+			<p>&copy; 2026 Sol de Alegría - Todos los derechos reservados.</p>
+		</footer>
+
+		<script src="js/script.js"></script>
+	</body>
+</html>
