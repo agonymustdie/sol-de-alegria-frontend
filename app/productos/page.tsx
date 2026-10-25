@@ -15,10 +15,7 @@ export default function ProductosPage() {
       <section className="py-4">
         <div className="row g-4">
           {productos.map((producto) => (
-            <div
-              key={producto.id}
-              className="col-12 col-md-6 col-lg-4"
-            >
+            <div key={producto.id} className="col-12 col-md-6 col-lg-4">
               <ProductoCard
                 id={producto.id}
                 nombre={producto.nombre}
