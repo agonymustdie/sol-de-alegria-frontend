@@ -14,17 +14,26 @@ export default function ProductoCard({
   precio,
 }: ProductoCardProps) {
   return (
-    <article>
-      <h3>{nombre}</h3>
-      <p>{descripcion}</p>
-      <p>Precio: ${precio.toLocaleString("es-CL")}</p>
+    <article className="card h-100 shadow-sm border-0 m-0 w-100 p-0 text-start">
+      <div className="card-body d-flex flex-column p-4">
+        <h3 className="card-title fs-5">{nombre}</h3>
 
-      <Link href={`/productos/${id}`}>
-        Ver detalle
-      </Link>
+        <p className="card-text text-secondary">{descripcion}</p>
 
-      <div>
-        <button type="button">Agregar al carrito</button>
+        <p className="fw-bold fs-5 mt-auto">
+          ${precio.toLocaleString("es-CL")}
+        </p>
+
+        <Link
+          href={`/productos/${id}`}
+          className="btn btn-outline-secondary mb-2"
+        >
+          Ver detalle
+        </Link>
+
+        <button type="button" className="btn btn-warning">
+          Agregar al carrito
+        </button>
       </div>
     </article>
   );
