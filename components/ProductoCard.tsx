@@ -1,4 +1,5 @@
 import Link from "next/link";
+import BotonCarrito from "./BotonCarrito";
 
 type ProductoCardProps = {
   id: number;
@@ -31,9 +32,11 @@ export default function ProductoCard({
           Ver detalle
         </Link>
 
-        <button type="button" className="btn btn-warning">
-          Agregar al carrito
-        </button>
+        <BotonCarrito
+          id={id}
+          nombre={nombre}
+          precio={precio}
+        />
       </div>
     </article>
   );

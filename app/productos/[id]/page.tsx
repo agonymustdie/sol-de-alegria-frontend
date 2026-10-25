@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { productos } from "../../../data/productos";
+import BotonCarrito from "../../../components/BotonCarrito";
 
 type Props = {
   params: Promise<{ id: string }>;
@@ -26,10 +27,7 @@ export default async function ProductoDetalle({ params }: Props) {
             Conoce nuestros productos y servicios para tu celebración.
         </p>
 
-        <div
-            className="card shadow-sm border-0 mx-auto text-start"
-            style={{ maxWidth: "650px" }}
-        >
+        <div className="card shadow-sm border-0 mx-auto text-start" style={{ maxWidth: "650px" }}>
             <div className="card-body p-4">
             <h3 className="fs-3 mb-3">{producto.nombre}</h3>
 
@@ -42,14 +40,8 @@ export default async function ProductoDetalle({ params }: Props) {
             </h4>
 
             <div className="d-grid gap-2">
-                <button type="button" className="btn btn-warning">
-                Agregar al carrito
-                </button>
-
-                <Link
-                href="/productos"
-                className="btn btn-outline-secondary"
-                >
+                <BotonCarrito id={producto.id} nombre={producto.nombre} precio={producto.precio}/>
+                <Link href="/productos" className="btn btn-outline-secondary">
                 Volver a productos
                 </Link>
             </div>
