@@ -34,12 +34,13 @@ export default function CheckoutPage() {
     }
 
     const pedido = {
-      nombre,
-      correo,
-      telefono,
-      direccion,
-      productos: carrito,
-      fecha: new Date().toLocaleString("es-CL"),
+    nombre,
+    correo,
+    telefono,
+    direccion,
+    productos: carrito,
+    fecha: new Date().toLocaleString("es-CL"),
+    estado: "Pendiente",
     };
 
     const guardados = localStorage.getItem("pedidos");
