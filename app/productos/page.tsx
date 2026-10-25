@@ -17,38 +17,36 @@ export default function ProductosPage() {
 
   return (
     <main className="container py-5">
-      <section className="text-center py-4">
-        <h2 className="mb-3">Nuestros productos</h2>
+      <div className="text-center mb-5">
+        <h1 className="fw-bold mb-3">Nuestros productos</h1>
 
-        <p>
-          Encuentra diferentes productos y servicios para hacer
-          de tu celebración un momento especial.
+        <p className="text-secondary">
+          Encuentra productos y servicios para hacer de tu celebración
+          un momento inolvidable.
         </p>
-      </section>
+      </div>
 
-      <section className="py-4">
-        <div className="row g-4">
-          {productos.map((producto) => (
-            <div
-              key={producto.id}
-              className="col-12 col-md-6 col-lg-4"
-            >
-              <ProductoCard
-                id={producto.id}
-                nombre={producto.nombre}
-                descripcion={producto.descripcion}
-                precio={producto.precio}
-              />
-            </div>
-          ))}
+      <div className="row g-4">
+        {productos.map((producto) => (
+          <div
+            key={producto.id}
+            className="col-12 col-md-6 col-lg-4"
+          >
+            <ProductoCard
+              id={producto.id}
+              nombre={producto.nombre}
+              descripcion={producto.descripcion}
+              precio={producto.precio}
+            />
+          </div>
+        ))}
+      </div>
+
+      {productos.length === 0 && (
+        <div className="alert alert-info text-center mt-4">
+          No hay productos disponibles.
         </div>
-
-        {productos.length === 0 && (
-          <p className="text-center">
-            No hay productos disponibles.
-          </p>
-        )}
-      </section>
+      )}
     </main>
   );
 }

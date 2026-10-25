@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
 
 export default function RegistroPage() {
   const [nombre, setNombre] = useState("");
@@ -57,75 +58,99 @@ export default function RegistroPage() {
 
   return (
     <main className="container py-5">
-      <section className="py-4">
-        <h2 className="mb-3">Crear cuenta</h2>
-
-        <p className="mb-4">
-          Regístrate para acceder a Sol de Alegría.
+      <div className="text-center mb-4">
+        <h1 className="fw-bold">Crear cuenta</h1>
+        <p className="text-secondary">
+          Regístrate y comienza a preparar tus celebraciones
+          con Sol de Alegría.
         </p>
+      </div>
 
-        <form
-          onSubmit={registrarUsuario}
-          className="card p-4 shadow-sm mx-auto"
-          style={{ maxWidth: "600px" }}
-        >
-          <div className="mb-3">
-            <label htmlFor="nombre" className="form-label">
-              Nombre completo
-            </label>
-            <input
-              id="nombre"
-              type="text"
-              className="form-control"
-              value={nombre}
-              onChange={(e) => setNombre(e.target.value)}
-            />
-          </div>
+      <div
+        className="card border-0 shadow-sm mx-auto"
+        style={{ maxWidth: "550px" }}
+      >
+        <div className="card-body p-4 p-md-5">
+          <h2 className="fs-4 fw-bold text-center mb-4">
+            Datos de registro
+          </h2>
 
-          <div className="mb-3">
-            <label htmlFor="correo" className="form-label">
-              Correo electrónico
-            </label>
-            <input
-              id="correo"
-              type="email"
-              className="form-control"
-              value={correo}
-              onChange={(e) => setCorreo(e.target.value)}
-            />
-          </div>
+          <form onSubmit={registrarUsuario}>
+            <div className="mb-3">
+              <label htmlFor="nombre" className="form-label">
+                Nombre completo
+              </label>
 
-          <div className="mb-3">
-            <label htmlFor="contrasena" className="form-label">
-              Contraseña
-            </label>
-            <input
-              id="contrasena"
-              type="password"
-              className="form-control"
-              value={contrasena}
-              onChange={(e) => setContrasena(e.target.value)}
-            />
-          </div>
+              <input
+                id="nombre"
+                type="text"
+                className="form-control"
+                placeholder="Ingresa tu nombre"
+                value={nombre}
+                onChange={(e) => setNombre(e.target.value)}
+              />
+            </div>
 
-          <div className="mb-4">
-            <label htmlFor="confirmar" className="form-label">
-              Confirmar contraseña
-            </label>
-            <input
-              id="confirmar"
-              type="password"
-              className="form-control"
-              value={confirmar}
-              onChange={(e) => setConfirmar(e.target.value)}
-            />
-          </div>
+            <div className="mb-3">
+              <label htmlFor="correo" className="form-label">
+                Correo electrónico
+              </label>
 
-          <button type="submit" className="btn btn-warning">
-            Registrarse
-          </button>
-        </form>
-      </section>
+              <input
+                id="correo"
+                type="email"
+                className="form-control"
+                placeholder="ejemplo@correo.cl"
+                value={correo}
+                onChange={(e) => setCorreo(e.target.value)}
+              />
+            </div>
+
+            <div className="mb-3">
+              <label htmlFor="contrasena" className="form-label">
+                Contraseña
+              </label>
+
+              <input
+                id="contrasena"
+                type="password"
+                className="form-control"
+                placeholder="Mínimo 8 caracteres"
+                value={contrasena}
+                onChange={(e) => setContrasena(e.target.value)}
+              />
+            </div>
+
+            <div className="mb-4">
+              <label htmlFor="confirmar" className="form-label">
+                Confirmar contraseña
+              </label>
+
+              <input
+                id="confirmar"
+                type="password"
+                className="form-control"
+                placeholder="Repite tu contraseña"
+                value={confirmar}
+                onChange={(e) => setConfirmar(e.target.value)}
+              />
+            </div>
+
+            <button type="submit" className="btn btn-warning w-100">
+              Registrarse
+            </button>
+          </form>
+
+          <hr className="my-4" />
+
+          <p className="text-center mb-0">
+            ¿Ya tienes una cuenta?{" "}
+            <Link href="/login" className="text-decoration-none">
+              Inicia sesión aquí
+            </Link>
+          </p>
+        </div>
+      </div>
     </main>
   );
 }

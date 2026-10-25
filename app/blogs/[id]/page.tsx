@@ -24,6 +24,12 @@ const articulos = [
   },
 ];
 
+export function generateStaticParams() {
+  return articulos.map((articulo) => ({
+    id: articulo.id,
+  }));
+}
+
 export default async function BlogDetallePage({
   params,
 }: {
@@ -41,21 +47,51 @@ export default async function BlogDetallePage({
 
   return (
     <main className="container py-5">
-      <section className="py-4">
-        <article className="card p-4 shadow-sm w-100">
-          <h2 className="mb-4">{articulo.titulo}</h2>
+      <nav aria-label="breadcrumb" className="mb-4">
+        <ol className="breadcrumb">
+          <li className="breadcrumb-item">
+            <Link href="/" className="text-decoration-none">
+              Inicio
+            </Link>
+          </li>
 
+          <li className="breadcrumb-item">
+            <Link href="/blogs" className="text-decoration-none">
+              Blog
+            </Link>
+          </li>
+
+          <li className="breadcrumb-item active">
+            Artículo
+          </li>
+        </ol>
+      </nav>
+
+      <article className="card border-0 shadow-sm overflow-hidden">
+        <div className="bg-warning text-center p-4 p-md-5">
+          <h1 className="fw-bold mb-0">
+            {articulo.titulo}
+          </h1>
+        </div>
+
+        <div className="card-body p-4 p-md-5">
           {articulo.contenido.map((parrafo, index) => (
-            <p key={index}>{parrafo}</p>
+            <p
+              key={index}
+              className="mb-4"
+              style={{ lineHeight: "1.8" }}
+            >
+              {parrafo}
+            </p>
           ))}
 
-          <div className="mt-3">
-            <Link href="/blogs" className="btn btn-warning">
-              Volver al blog
-            </Link>
-          </div>
-        </article>
-      </section>
+          <hr className="my-4" />
+
+          <Link href="/blogs" className="btn btn-warning">
+            Volver al blog
+          </Link>
+        </div>
+      </article>
     </main>
   );
 }

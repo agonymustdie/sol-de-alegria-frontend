@@ -15,19 +15,27 @@ export default function ProductoCard({
   precio,
 }: ProductoCardProps) {
   return (
-    <article className="card h-100 shadow-sm border-0 m-0 w-100 p-0 text-start">
+    <article className="card h-100 border-0 shadow-sm overflow-hidden">
+      <div className="bg-light text-center py-5">
+        <span className="fs-1">🎉</span>
+      </div>
+
       <div className="card-body d-flex flex-column p-4">
-        <h3 className="card-title fs-5">{nombre}</h3>
+        <h3 className="card-title fs-5 fw-bold mb-3">
+          {nombre}
+        </h3>
 
-        <p className="card-text text-secondary">{descripcion}</p>
+        <p className="card-text text-secondary mb-3">
+          {descripcion}
+        </p>
 
-        <p className="fw-bold fs-5 mt-auto">
+        <p className="precio-nuevo mt-auto mb-3">
           ${precio.toLocaleString("es-CL")}
         </p>
 
         <Link
           href={`/productos/${id}`}
-          className="btn btn-outline-secondary mb-2"
+          className="btn btn-outline-dark mb-2"
         >
           Ver detalle
         </Link>

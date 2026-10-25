@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { Suspense, useEffect, useState } from "react";
 import { useParams } from "next/navigation";
 import Link from "next/link";
 import BotonCarrito from "../../../components/BotonCarrito";
@@ -13,7 +13,21 @@ type Producto = {
   precio: number;
 };
 
-export default function ProductoDetalle() {
+export default function ProductoDetallePage() {
+  return (
+    <Suspense
+      fallback={
+        <main className="container py-5">
+          <p>Cargando producto...</p>
+        </main>
+      }
+    >
+      <ProductoDetalle />
+    </Suspense>
+  );
+}
+
+function ProductoDetalle() {
   const params = useParams();
   const id = Number(params.id);
 
@@ -23,9 +37,10 @@ export default function ProductoDetalle() {
   useEffect(() => {
     const guardados = localStorage.getItem("productos");
 
-    const productos: Producto[] = guardados !== null
-      ? JSON.parse(guardados)
-      : productosIniciales;
+    const productos: Producto[] =
+      guardados !== null
+        ? JSON.parse(guardados)
+        : productosIniciales;
 
     const encontrado = productos.find(
       (producto) => producto.id === id
@@ -46,56 +61,80 @@ export default function ProductoDetalle() {
   if (!producto) {
     return (
       <main className="container py-5">
-        <h2>Producto no encontrado</h2>
+        <div className="alert alert-warning text-center">
+          <h2 className="fs-4">Producto no encontrado</h2>
+          <p>El producto que buscas no está disponible.</p>
 
-        <Link href="/productos" className="btn btn-warning mt-3">
-          Volver a productos
-        </Link>
+          <Link href="/productos" className="btn btn-dark">
+            Volver a productos
+          </Link>
+        </div>
       </main>
     );
   }
 
   return (
     <main className="container py-5">
-      <section className="py-4">
-        <h2 className="mb-3">Detalle del producto</h2>
+      <nav aria-label="breadcrumb" className="mb-4">
+        <ol className="breadcrumb">
+          <li className="breadcrumb-item">
+            <Link href="/" className="text-decoration-none">
+              Inicio
+            </Link>
+          </li>
 
-        <p className="text-secondary mb-4">
-          Conoce nuestros productos y servicios para tu celebración.
-        </p>
+          <li className="breadcrumb-item">
+            <Link href="/productos" className="text-decoration-none">
+              Productos
+            </Link>
+          </li>
 
-        <div
-          className="card shadow-sm border-0 mx-auto text-start"
-          style={{ maxWidth: "650px" }}
-        >
-          <div className="card-body p-4">
-            <h3 className="fs-3 mb-3">{producto.nombre}</h3>
+          <li className="breadcrumb-item active">
+            {producto.nombre}
+          </li>
+        </ol>
+      </nav>
 
-            <p className="text-secondary mb-4">
-              {producto.descripcion}
-            </p>
+      <div className="card border-0 shadow-sm overflow-hidden">
+        <div className="row g-0">
+          <div className="col-12 col-md-6">
+            <div className="bg-light h-100 d-flex align-items-center justify-content-center py-5">
+              <span style={{ fontSize: "100px" }}>🎉</span>
+            </div>
+          </div>
 
-            <h4 className="fw-bold mb-4">
-              ${producto.precio.toLocaleString("es-CL")}
-            </h4>
+          <div className="col-12 col-md-6">
+            <div className="card-body p-4 p-lg-5">
+              <h1 className="fw-bold fs-2 mb-3">
+                {producto.nombre}
+              </h1>
 
-            <div className="d-grid gap-2">
-              <BotonCarrito
-                id={producto.id}
-                nombre={producto.nombre}
-                precio={producto.precio}
-              />
+              <p className="text-secondary mb-4">
+                {producto.descripcion}
+              </p>
 
-              <Link
-                href="/productos"
-                className="btn btn-outline-secondary"
-              >
-                Volver a productos
-              </Link>
+              <h2 className="precio-nuevo mb-4">
+                ${producto.precio.toLocaleString("es-CL")}
+              </h2>
+
+              <div className="d-grid gap-3">
+                <BotonCarrito
+                  id={producto.id}
+                  nombre={producto.nombre}
+                  precio={producto.precio}
+                />
+
+                <Link
+                  href="/productos"
+                  className="btn btn-outline-dark"
+                >
+                  Volver a productos
+                </Link>
+              </div>
             </div>
           </div>
         </div>
-      </section>
+      </div>
     </main>
   );
 }

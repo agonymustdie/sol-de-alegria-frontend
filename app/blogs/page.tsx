@@ -3,24 +3,28 @@ import Link from "next/link";
 export default function BlogsPage() {
   return (
     <main className="container py-5">
-      <section className="py-4">
-        <h2 className="mb-3">Blog Sol de Alegría</h2>
+      <div className="text-center mb-5">
+        <h1 className="fw-bold mb-3">Blog Sol de Alegría</h1>
 
-        <p>
+        <p className="text-secondary">
           Descubre consejos, ideas y recomendaciones
           para organizar celebraciones infantiles.
         </p>
-      </section>
+      </div>
 
-      <section className="py-4">
-        <div className="row g-4">
-          <div className="col-12 col-md-6">
-            <article className="card p-4 shadow-sm h-100 w-100">
-              <h3 className="fs-5">
+      <div className="row g-4">
+        <div className="col-12 col-md-6">
+          <article className="card border-0 shadow-sm h-100 overflow-hidden">
+            <div className="bg-light text-center py-5">
+              <span style={{ fontSize: "60px" }}>🎂</span>
+            </div>
+
+            <div className="card-body p-4 d-flex flex-column">
+              <h2 className="card-title fs-4 fw-bold mb-3">
                 5 ideas para un cumpleaños infantil
-              </h3>
+              </h2>
 
-              <p>
+              <p className="card-text text-secondary mb-4">
                 Descubre algunas ideas sencillas para
                 transformar un cumpleaños en una celebración
                 entretenida y especial.
@@ -32,16 +36,22 @@ export default function BlogsPage() {
               >
                 Leer artículo
               </Link>
-            </article>
-          </div>
+            </div>
+          </article>
+        </div>
 
-          <div className="col-12 col-md-6">
-            <article className="card p-4 shadow-sm h-100 w-100">
-              <h3 className="fs-5">
+        <div className="col-12 col-md-6">
+          <article className="card border-0 shadow-sm h-100 overflow-hidden">
+            <div className="bg-light text-center py-5">
+              <span style={{ fontSize: "60px" }}>🎈</span>
+            </div>
+
+            <div className="card-body p-4 d-flex flex-column">
+              <h2 className="card-title fs-4 fw-bold mb-3">
                 ¿Cómo elegir una temática?
-              </h3>
+              </h2>
 
-              <p>
+              <p className="card-text text-secondary mb-4">
                 Elegir una temática puede ser una de las
                 partes más entretenidas al organizar una
                 celebración infantil.
@@ -53,10 +63,10 @@ export default function BlogsPage() {
               >
                 Leer artículo
               </Link>
-            </article>
-          </div>
+            </div>
+          </article>
         </div>
-      </section>
+      </div>
     </main>
   );
 }

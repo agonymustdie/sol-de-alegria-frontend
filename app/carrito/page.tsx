@@ -13,15 +13,15 @@ type ProductoCarrito = {
 export default function CarritoPage() {
   const [carrito, setCarrito] = useState<ProductoCarrito[]>([]);
 
-    useEffect(() => {
+  useEffect(() => {
     const guardados = localStorage.getItem("carrito");
 
     if (guardados) {
-        setCarrito(JSON.parse(guardados));
+      setCarrito(JSON.parse(guardados));
     } else {
-        setCarrito([]);
+      setCarrito([]);
     }
-    }, []);
+  }, []);
 
   function eliminarProducto(id: number) {
     const actualizado = carrito.filter(
@@ -55,65 +55,127 @@ export default function CarritoPage() {
 
   return (
     <main className="container py-5">
-      <section className="py-4">
-        <h2 className="mb-4">Carrito de compras</h2>
+      <h1 className="fw-bold mb-3">Carrito de compras</h1>
 
-        {carrito.length === 0 ? (
-          <p>Tu carrito está vacío.</p>
-        ) : (
-          <div>
+      <p className="text-secondary mb-4">
+        Revisa tus productos antes de finalizar la compra.
+      </p>
+
+      {carrito.length === 0 ? (
+        <div className="alert alert-info text-center p-4">
+          <p className="mb-3">Tu carrito está vacío.</p>
+
+          <Link href="/productos" className="btn btn-warning">
+            Ver productos
+          </Link>
+        </div>
+      ) : (
+        <div className="row g-4">
+          <div className="col-12 col-lg-8">
             {carrito.map((producto) => (
               <div
                 key={producto.id}
-                className="card mb-3 p-3 text-start"
+                className="card border-0 shadow-sm mb-3"
               >
-                <h3 className="fs-5">{producto.nombre}</h3>
+                <div className="card-body p-4">
+                  <div className="d-flex justify-content-between align-items-start gap-3">
+                    <div>
+                      <h2 className="fs-5 fw-bold">
+                        {producto.nombre}
+                      </h2>
 
-                <p>
-                  Precio: ${producto.precio.toLocaleString("es-CL")}
-                </p>
+                      <p className="text-secondary mb-3">
+                        Precio unitario: $
+                        {producto.precio.toLocaleString("es-CL")}
+                      </p>
+                    </div>
 
-                <div className="d-flex align-items-center gap-3 mb-3">
-                  <span>Cantidad:</span>
+                    <button
+                      type="button"
+                      className="btn btn-outline-danger btn-sm"
+                      onClick={() => eliminarProducto(producto.id)}
+                    >
+                      Eliminar
+                    </button>
+                  </div>
 
-                  <button
-                    type="button"
-                    className="btn btn-outline-secondary"
-                    onClick={() => cambiarCantidad(producto.id, -1)}
-                  >
-                    -
-                  </button>
+                  <div className="d-flex flex-wrap align-items-center gap-3">
+                    <span>Cantidad:</span>
 
-                  <span>{producto.cantidad}</span>
+                    <div className="d-flex align-items-center gap-3">
+                      <button
+                        type="button"
+                        className="btn btn-outline-secondary btn-sm"
+                        onClick={() => cambiarCantidad(producto.id, -1)}
+                      >
+                        -
+                      </button>
 
-                  <button
-                    type="button"
-                    className="btn btn-outline-secondary"
-                    onClick={() => cambiarCantidad(producto.id, 1)}
-                  >
-                    +
-                  </button>
+                      <span>{producto.cantidad}</span>
+
+                      <button
+                        type="button"
+                        className="btn btn-outline-secondary btn-sm"
+                        onClick={() => cambiarCantidad(producto.id, 1)}
+                      >
+                        +
+                      </button>
+                    </div>
+                  </div>
+
+                  <hr />
+
+                  <p className="fw-bold mb-0">
+                    Subtotal: $
+                    {(producto.precio * producto.cantidad).toLocaleString("es-CL")}
+                  </p>
                 </div>
-
-                <button
-                  type="button"
-                  className="btn btn-danger"
-                  onClick={() => eliminarProducto(producto.id)}
-                >
-                  Eliminar
-                </button>
               </div>
             ))}
-
-            <h3 className="mt-4">
-              Total: ${total.toLocaleString("es-CL")}
-            </h3>
-            <Link href="/checkout" className="btn btn-warning mt-3">
-                Finalizar compra
-            </Link>
           </div>
-        )}
-      </section>
+
+          <div className="col-12 col-lg-4">
+            <div className="card border-0 shadow-sm">
+              <div className="card-body p-4">
+                <h2 className="fs-5 fw-bold mb-4">
+                  Resumen de compra
+                </h2>
+
+                <div className="d-flex justify-content-between mb-3">
+                  <span>Productos</span>
+                  <span>
+                    {carrito.reduce(
+                      (suma, producto) => suma + producto.cantidad,
+                      0
+                    )}
+                  </span>
+                </div>
+
+                <hr />
+
+                <div className="d-flex justify-content-between fw-bold fs-5 mb-4">
+                  <span>Total</span>
+                  <span>${total.toLocaleString("es-CL")}</span>
+                </div>
+
+                <Link
+                  href="/checkout"
+                  className="btn btn-warning w-100 mb-2"
+                >
+                  Finalizar compra
+                </Link>
+
+                <Link
+                  href="/productos"
+                  className="btn btn-outline-dark w-100"
+                >
+                  Seguir comprando
+                </Link>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
     </main>
   );
 }

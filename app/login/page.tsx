@@ -46,54 +46,68 @@ export default function LoginPage() {
 
   return (
     <main className="container py-5">
-      <section className="py-4">
-        <h2 className="mb-3">Iniciar sesión</h2>
-
-        <p className="mb-4">
-          Ingresa tus datos para acceder a Sol de Alegría.
+      <div className="text-center mb-4">
+        <h1 className="fw-bold">Iniciar sesión</h1>
+        <p className="text-secondary">
+          Bienvenido a Sol de Alegría. Ingresa tus datos para continuar.
         </p>
+      </div>
 
-        <form
-          onSubmit={iniciarSesion}
-          className="card p-4 shadow-sm mx-auto"
-          style={{ maxWidth: "600px" }}
-        >
-          <div className="mb-3">
-            <label htmlFor="correo" className="form-label">
-              Correo electrónico
-            </label>
-            <input
-              id="correo"
-              type="email"
-              className="form-control"
-              value={correo}
-              onChange={(e) => setCorreo(e.target.value)}
-            />
-          </div>
+      <div
+        className="card border-0 shadow-sm mx-auto"
+        style={{ maxWidth: "500px" }}
+      >
+        <div className="card-body p-4 p-md-5">
+          <h2 className="fs-4 fw-bold text-center mb-4">
+            Accede a tu cuenta
+          </h2>
 
-          <div className="mb-3">
-            <label htmlFor="contrasena" className="form-label">
-              Contraseña
-            </label>
-            <input
-              id="contrasena"
-              type="password"
-              className="form-control"
-              value={contrasena}
-              onChange={(e) => setContrasena(e.target.value)}
-            />
-          </div>
+          <form onSubmit={iniciarSesion}>
+            <div className="mb-3">
+              <label htmlFor="correo" className="form-label">
+                Correo electrónico
+              </label>
 
-          <button type="submit" className="btn btn-warning">
-            Iniciar sesión
-          </button>
+              <input
+                id="correo"
+                type="email"
+                className="form-control"
+                placeholder="ejemplo@correo.cl"
+                value={correo}
+                onChange={(e) => setCorreo(e.target.value)}
+              />
+            </div>
 
-          <p className="mt-3 mb-0">
+            <div className="mb-4">
+              <label htmlFor="contrasena" className="form-label">
+                Contraseña
+              </label>
+
+              <input
+                id="contrasena"
+                type="password"
+                className="form-control"
+                placeholder="Ingresa tu contraseña"
+                value={contrasena}
+                onChange={(e) => setContrasena(e.target.value)}
+              />
+            </div>
+
+            <button type="submit" className="btn btn-warning w-100">
+              Iniciar sesión
+            </button>
+          </form>
+
+          <hr className="my-4" />
+
+          <p className="text-center mb-0">
             ¿No tienes una cuenta?{" "}
-            <Link href="/registro">Regístrate aquí</Link>
+            <Link href="/registro" className="text-decoration-none">
+              Regístrate aquí
+            </Link>
           </p>
-        </form>
-      </section>
+        </div>
+      </div>
     </main>
   );
 }
