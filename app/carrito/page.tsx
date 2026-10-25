@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Link from "next/link";
 
 type ProductoCarrito = {
   id: number;
@@ -12,13 +13,15 @@ type ProductoCarrito = {
 export default function CarritoPage() {
   const [carrito, setCarrito] = useState<ProductoCarrito[]>([]);
 
-  useEffect(() => {
+    useEffect(() => {
     const guardados = localStorage.getItem("carrito");
 
     if (guardados) {
-      setCarrito(JSON.parse(guardados));
+        setCarrito(JSON.parse(guardados));
+    } else {
+        setCarrito([]);
     }
-  }, []);
+    }, []);
 
   function eliminarProducto(id: number) {
     const actualizado = carrito.filter(
@@ -105,6 +108,9 @@ export default function CarritoPage() {
             <h3 className="mt-4">
               Total: ${total.toLocaleString("es-CL")}
             </h3>
+            <Link href="/checkout" className="btn btn-warning mt-3">
+                Finalizar compra
+            </Link>
           </div>
         )}
       </section>
