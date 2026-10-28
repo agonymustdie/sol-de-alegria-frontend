@@ -43,7 +43,7 @@ export default function AdminMensajesPage() {
         </div>
 
         <Link href="/admin" className="btn btn-dark">
-          Volver al panel
+          Volver
         </Link>
       </div>
 
