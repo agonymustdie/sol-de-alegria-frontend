@@ -123,8 +123,8 @@ export default function AdminProductosPage() {
           </p>
         </div>
 
-        <Link href="/admin/pedidos" className="btn btn-dark">
-          Ver pedidos
+        <Link href="/admin" className="btn btn-dark">
+          Volver
         </Link>
       </div>
 

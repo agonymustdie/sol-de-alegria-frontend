@@ -1,7 +1,34 @@
 
+"use client";
+
 import Link from "next/link";
+import { useSyncExternalStore } from "react";
+import {
+  obtenerSesionEnServidor,
+  obtenerSesionGuardada,
+  suscribirseASesion,
+  type UsuarioSesion,
+} from "./session";
 
 export default function Footer() {
+  const sesionGuardada = useSyncExternalStore(
+    suscribirseASesion,
+    obtenerSesionGuardada,
+    obtenerSesionEnServidor
+  );
+  const usuario: UsuarioSesion | null =
+    sesionGuardada ? JSON.parse(sesionGuardada) : null;
+
+  if (usuario?.rol === "admin") {
+    return (
+      <footer className="bg-dark text-white py-2 mt-4">
+        <p className="container text-center small mb-0">
+          © 2026 Sol de Alegría
+        </p>
+      </footer>
+    );
+  }
+
   return (
     <footer className="bg-dark text-white py-4 mt-5">
       <div className="container">

@@ -60,8 +60,8 @@ export default function AdminPedidosPage() {
           </p>
         </div>
 
-        <Link href="/admin/productos" className="btn btn-dark">
-          Ver productos
+        <Link href="/admin" className="btn btn-dark">
+          Volver
         </Link>
       </div>
 

@@ -2,6 +2,14 @@
 
 import { useState } from "react";
 
+type MensajeContacto = {
+  id: number;
+  nombre: string;
+  correo: string;
+  mensaje: string;
+  fecha: string;
+};
+
 export default function ContactoPage() {
   const [nombre, setNombre] = useState("");
   const [correo, setCorreo] = useState("");
@@ -20,7 +28,24 @@ export default function ContactoPage() {
       return;
     }
 
-    alert("Mensaje enviado correctamente (simulación)");
+    const mensajesGuardados: MensajeContacto[] = JSON.parse(
+      localStorage.getItem("mensajes") || "[]"
+    );
+
+    const nuevoMensaje: MensajeContacto = {
+      id: Date.now(),
+      nombre: nombre.trim(),
+      correo: correo.trim(),
+      mensaje: mensaje.trim(),
+      fecha: new Date().toISOString(),
+    };
+
+    localStorage.setItem(
+      "mensajes",
+      JSON.stringify([nuevoMensaje, ...mensajesGuardados])
+    );
+
+    alert("Mensaje enviado correctamente");
 
     setNombre("");
     setCorreo("");

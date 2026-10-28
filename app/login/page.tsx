@@ -2,13 +2,17 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { guardarSesion } from "../../components/session";
 
 type Usuario = {
   nombre: string;
   correo: string;
+  rol?: "admin" | "usuario";
 };
 
 export default function LoginPage() {
+  const router = useRouter();
   const [correo, setCorreo] = useState("");
   const [contrasena, setContrasena] = useState("");
 
@@ -17,6 +21,20 @@ export default function LoginPage() {
 
     if (!correo.trim() || !contrasena) {
       alert("Debes completar todos los campos");
+      return;
+    }
+
+    const correoNormalizado = correo.trim().toLowerCase();
+
+    if (correoNormalizado.endsWith("@admin.com")) {
+      const administrador: Usuario = {
+        nombre: "Administrador",
+        correo: correoNormalizado,
+        rol: "admin",
+      };
+
+      guardarSesion(administrador);
+      router.replace("/admin");
       return;
     }
 
@@ -38,10 +56,10 @@ export default function LoginPage() {
       return;
     }
 
-    localStorage.setItem("sesion", JSON.stringify(usuario));
+    guardarSesion({ ...usuario, rol: "usuario" });
 
     alert("Sesión de demostración iniciada");
-    window.location.href = "/";
+    router.replace("/");
   }
 
   return (
