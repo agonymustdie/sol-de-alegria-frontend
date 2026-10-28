@@ -24,15 +24,11 @@ export default function AdminPage() {
       <section className="bg-warning rounded-4 p-4 p-md-5 mb-5 shadow-sm">
         <div className="row align-items-center g-4">
           <div className="col-12 col-lg-8">
-            <span className="badge bg-dark text-warning mb-3">
-              ADMINISTRACIÓN
-            </span>
             <h1 className="display-6 fw-bold mb-3">
               Panel de administración
             </h1>
             <p className="lead mb-0">
-              Gestiona tu tienda desde un solo lugar. Elige una sección para
-              comenzar.
+              Gestiona tu tienda desde un solo lugar.
             </p>
           </div>
           <div className="col-12 col-lg-4 text-lg-end">

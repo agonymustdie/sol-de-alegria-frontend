@@ -54,10 +54,6 @@ export default function AdminPedidosPage() {
           <h1 className="fw-bold mb-2">
             Administración de pedidos
           </h1>
-
-          <p className="text-secondary mb-0">
-            Revisa y gestiona los pedidos de Sol de Alegría.
-          </p>
         </div>
 
         <Link href="/admin" className="btn btn-dark">

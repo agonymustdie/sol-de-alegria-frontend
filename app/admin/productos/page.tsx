@@ -117,10 +117,6 @@ export default function AdminProductosPage() {
           <h1 className="fw-bold mb-2">
             Administración de productos
           </h1>
-
-          <p className="text-secondary mb-0">
-            Gestiona los productos de Sol de Alegría.
-          </p>
         </div>
 
         <Link href="/admin" className="btn btn-dark">
